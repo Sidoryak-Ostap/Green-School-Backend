@@ -27,7 +27,7 @@ router.post('/add-test', async (req, res) => {
         const test = new UserTestModel({
             user_id: decoded_token._id,
             test_code,
-            grade: 0,
+            mark: 0,
             completed: 0,
             test_info: {subjectName: SubjectName, theme: chapterName, testName},
             date: new Date()

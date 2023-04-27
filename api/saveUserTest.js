@@ -7,10 +7,12 @@ const router = Router();
 
 router.patch('/save-test', async (req,res) =>{
 try {
-    const {grade, completed, test_code} = req.body;
+    const {mark, completed, test_code} = req.body;
+    console.log('mark', mark);
 
 
     const test = await UserTestModel.findOne({test_code});
+
     if(!test) {
         return res.status(400).send('Ivalid test code');
     }
@@ -18,8 +20,9 @@ try {
     const testUpdated = await UserTestModel.updateOne({
         test_code
     },
-    {$set : {grade, completed}}
+    {$set : {mark, completed}}
     )
+
 
     res.status(200).send(testUpdated)
 
