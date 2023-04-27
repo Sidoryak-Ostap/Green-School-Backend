@@ -14,9 +14,10 @@ router.post('/create-test', async (req,res) =>{
     try {
 
 
+        const codeSymbols = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghiklmnoprqrstuvwxyz1234567890';
         const {subjectName, chapterName, testName, testinfo, token } = req.body;
 
-        const testCode = generateApiKey({method: 'string', min: 10, max: 20}).toString();
+        const testCode = generateApiKey({method: 'string', min: 10, max: 20, pool: `${codeSymbols}`}).toString();
 
         const decoded_token = jwt.verify(token, 'secret123');
 
