@@ -1,5 +1,6 @@
 const {Router} = require('express');
-
+// require('dotenv').config();
+const jwt = require('jsonwebtoken');
 const { UserTestModel } = require('../models/userTest.js');
 
 const router = Router();
@@ -7,10 +8,9 @@ const router = Router();
 
 router.patch('/save-test', async (req,res) =>{
 try {
-    const {mark, completed, test_code} = req.body;
-    console.log('mark', mark);
+    const {mark, completed, test_code , token} = req.body;
 
-
+    const decodedToken = jwt.verify(token, process.env.JWT_CODE);    
     const test = await UserTestModel.findOne({test_code});
 
     if(!test) {
@@ -18,7 +18,7 @@ try {
     }
 
     const testUpdated = await UserTestModel.updateOne({
-        test_code
+        test_code, user_id: decodedToken._id
     },
     {$set : {mark, completed}}
     )

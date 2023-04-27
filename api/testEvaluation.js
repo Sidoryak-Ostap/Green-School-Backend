@@ -36,7 +36,7 @@ router.post('/test-evaluation', async (req,res)=>{
      const testTeacheInfo = teacherTest.test_info;
      
      let testCoeficient =12 / testTeacheInfo.length; // Кількість балів за одну правильну відповідь
-     console.log(testCoeficient);
+    //  console.log(testCoeficient);
      let totalMark = 0;
 
 
@@ -58,12 +58,12 @@ router.post('/test-evaluation', async (req,res)=>{
                 let teacherAnswers = techerObject.rightAnswers;
 
                 let rightAnswersArray = [];
-                console.log('userAnswers',userAnswers);
+                // console.log('userAnswers',userAnswers);
                 userAnswers.map(userAnswer =>{
                     teacherAnswers.map(teacherAnswer =>{
                         if(userAnswer == teacherAnswer) {
-                            console.log("userAnswer", userAnswer);
-                            console.log('teacherAnswer', teacherAnswer);
+                            // console.log("userAnswer", userAnswer);
+                            // console.log('teacherAnswer', teacherAnswer);
                             rightAnswersArray.push(userAnswer);
                         }
                         
@@ -75,7 +75,7 @@ router.post('/test-evaluation', async (req,res)=>{
 
      })
 
-     console.log('MainUserAnswersArray',MainUserAnswersArray);
+    //  console.log('MainUserAnswersArray',MainUserAnswersArray);
 
 
     // Витягування правильних відповідей teacher в масив
@@ -93,8 +93,8 @@ router.post('/test-evaluation', async (req,res)=>{
         const userAmountAnswer = MainUserAnswersArray[i].length;
         const teacherAmountAnswer = MainTeacherAnswerArray[i].length;
 
-        console.log('userAmountAnswer', userAmountAnswer);
-        console.log('teacherAmountAnswer',teacherAmountAnswer);
+        // console.log('userAmountAnswer', userAmountAnswer);
+        // console.log('teacherAmountAnswer',teacherAmountAnswer);
         const markForQuestion =  teacherAmountAnswer / userAmountAnswer; // 4 / 2  = 2, 4 / 3 =  1.33
         const markForQuestionInDecimalSystem  = testCoeficient / markForQuestion;
         totalMark += markForQuestionInDecimalSystem;
